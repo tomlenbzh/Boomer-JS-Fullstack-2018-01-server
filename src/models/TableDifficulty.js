@@ -6,6 +6,7 @@ const Table = global.sequelize.define(tableName,
   {
     id: {
       allowNull: false,
+      primaryKey: true,
       unique: true,
       type: Sequelize.INTEGER,
     },

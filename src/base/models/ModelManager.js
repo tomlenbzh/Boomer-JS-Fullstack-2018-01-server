@@ -10,12 +10,24 @@ import ModelsMigrations from './ModelsMigrations';
 
 export default class ModelManager {
   constructor() {
-    this.sequelize = new Sequelize(config.database.url, config.database);
+    this.configBDD = config.database;
+    this.sequelize = new Sequelize(config.database.database, config.database.username, config.database.password, {    
+      host: config.database.host,
+      dialect: config.database.dialect,
+      operatorsAliases: false,
+    
+      pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+      },
+    });
     global.sequelize = this.sequelize;
     this.modelsMigrations = new ModelsMigrations(this.sequelize);
     this.models = null;
     this.path = __dirname;
-
+    
     // global.__ is here to let gettext parse the string to put them on .po file
     global.__ = string => string;
   }

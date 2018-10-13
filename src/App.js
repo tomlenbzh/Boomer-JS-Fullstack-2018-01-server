@@ -60,7 +60,7 @@ export default class App extends AppBase {
     ]);
 
     const models = db.initModels();
-    this.app.context.models = models;
+    this.koaApp.context.models = models;
     this.routeParam = { models };
 
     super.mountFolder(join(__dirname, 'routes'), '/'); // adds a folder to scan for route files

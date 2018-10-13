@@ -3,12 +3,12 @@ define({ "api": [
     "type": "get",
     "url": "/example/:id",
     "title": "",
-    "group": "Example",
     "permission": [
       {
         "name": "public"
       }
     ],
+    "group": "Example",
     "version": "0.0.0",
     "filename": "C:/Users/noob_/Desktop/JsFullStack/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/example/-id.js",
     "groupTitle": "Example",

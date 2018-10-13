@@ -6,6 +6,7 @@ const Table = global.sequelize.define(tableName,
   {
     id: {
       allowNull: false,
+      primaryKey: true,
       unique: true,
       type: Sequelize.INTEGER,
     },
@@ -24,7 +25,7 @@ const Table = global.sequelize.define(tableName,
       allowNull: false,
       trim: true,
     },
-    difficulty: {
+    level: {
       type: Sequelize.INTEGER,
       defaultValue: 0,
       trim: true,
@@ -33,7 +34,7 @@ const Table = global.sequelize.define(tableName,
 );
 
 Table.associate = (models) => {
-  Table.belongsTo(models.difficulty, { foreignKey: 'difficulty' });
+  Table.belongsTo(models.difficulty, { foreignKey: 'level' });
 };
 
 Table.getRoomById = async (id) => {
@@ -50,8 +51,8 @@ Table.changeHotPotatoe = async ({ id, hot_potatoe }) => {
   return Table.updateOne({ hot_potatoe }, { where: { id } });
 };
 
-Table.changeDifficulty = async ({ id, difficulty }) => {
-  return Table.updateOne({ difficulty }, { where: { id } });
+Table.changeDifficulty = async ({ id, level }) => {
+  return Table.updateOne({ level }, { where: { id } });
 };
 
 export default Table;

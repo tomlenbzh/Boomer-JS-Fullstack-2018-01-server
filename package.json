@@ -22,15 +22,16 @@
     "config": "^1.24.0",
     "handlebars": "^4.0.6",
     "koa-smart": "^2.0.2",
+    "mysql2": "^1.6.1",
     "pg": "^6.4.2",
     "pg-hstore": "^2.3.2",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "sequelize": "^4.38.1",
-    "sqlite3": "^4.0.2",
     "sequelize-cli": "^3.0.0",
     "sequelize-transforms": "github:allmas-tn/sequelize-transforms",
-    "uuid": "^3.0.1"    
+    "sqlite3": "^4.0.2",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
