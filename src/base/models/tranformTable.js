@@ -76,7 +76,7 @@ function addFunction(Table) {
     if (option.attributes === undefined) {
       option.attributes = [];
       for (const key in Table.attributes) {
-        if (!['created_at', 'updated_at', 'deleted_at'].includes(key)) {
+        if (!['createdAt', 'updatedAt', 'deletedAt'].includes(key)) {
           option.attributes.push(key);
         }
       }
@@ -122,7 +122,7 @@ function addFunction(Table) {
       }
       const historyOptions = Table.options.historyOptions;
       const tableHistory = Table.models[historyOptions.tableName];
-      const toExcludes = ['id', 'created_at', 'updated_at', 'deleted_at', 'update_user_id', historyOptions.foreignKey];
+      const toExcludes = ['id', 'createdAt', 'updatedAt', 'deletedAt', 'update_user_id', historyOptions.foreignKey];
 
       if (!newObj.id) { return null; }
 

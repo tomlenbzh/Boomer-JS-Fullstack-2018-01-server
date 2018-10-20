@@ -1,11 +1,14 @@
 import Sequelize from 'sequelize';
 
+import { crypto, validator } from '../base/utils';
+
 const tableName = 'users';
 
 const Table = global.sequelize.define(tableName,
   {
     id: {
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
@@ -35,7 +38,35 @@ const Table = global.sequelize.define(tableName,
       trim: true,
     },
   },
+  {
+    hooks: {
+      beforeCreate: async (instance, options) => {
+        return Table.beforeCreateUpdate(instance, options, true);
+      },
+      beforeUpdate: async (instance, options) => {
+        return Table.beforeCreateUpdate(instance, options, false);
+      },
+    },    
+  },
 );
+
+Table.beforeCreateUpdate = async (instance, options, isCreate) => {
+  const { fields } = options;
+  // console.log("options= ", options);
+  if (isCreate && fields.includes('pseudo')) {
+    const exist = await Table.findOne({ where: { pseudo: instance.pseudo } });
+    if (exist) {
+      Table.throw(400, global.__('Pseudo is already in use'));
+    }
+  }
+  if (isCreate || fields.includes('password')) {
+    const { args, msg } = validator.get('password');
+    if (!instance.password.match(args)) {
+      Table.throw(400, msg);
+    }
+    instance.password = crypto.encryptPassword(instance.password);
+  }
+};
 
 Table.associate = (models) => {
 };

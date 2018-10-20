@@ -14,6 +14,7 @@ import {
 } from 'koa-smart/middlewares';
 
 import db from './models';
+import authentification from './middlewares/authentification';
 
 // Set Default Option
 RateLimit.defaultOptions({
@@ -55,6 +56,7 @@ export default class App extends AppBase {
       handleError(), // helps handling error codes
       logger(), // gives detailed logs of each request made on the API
       addDefaultBody(), // if no body is present, put an empty object "{}" in its place.
+      authentification,
       compress({}), // compresses requests made to the API
       RateLimit.middleware({ interval: { min: 1 }, max: 100 }), // this will limited every user to call a maximum of 100 request per minute
     ]);
