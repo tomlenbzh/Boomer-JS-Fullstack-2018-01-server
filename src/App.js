@@ -44,7 +44,11 @@ export default class App extends AppBase {
 
     // we add the relevant middlewares to our API
     super.addMiddlewares([
-      cors({ credentials: true }), // add cors headers to the requests
+      cors({ 
+        origin: '*',
+        allowHeaders: 'Content-Type',
+        credentials: true
+      }), // add cors headers to the requests
       helmet(), // adds various security headers to our API's responses
       bodyParser(), // automatically parses the body of POST/PUT/PATCH requests, and adds it to the koa context
       i18n(this.koaApp, {

@@ -46,7 +46,6 @@ export default class RouteAuths extends Route {
     if (user && crypto.compartPassword(password, user.password)) {
       delete user.dataValues.password;
     } else {
-      console.log(user)
       this.throw(401, ctx.state.__('Incorrect pseudo or password'));
     }
 

@@ -52,7 +52,6 @@ const Table = global.sequelize.define(tableName,
 
 Table.beforeCreateUpdate = async (instance, options, isCreate) => {
   const { fields } = options;
-  // console.log("options= ", options);
   if (isCreate && fields.includes('pseudo')) {
     const exist = await Table.findOne({ where: { pseudo: instance.pseudo } });
     if (exist) {
