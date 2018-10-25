@@ -45,8 +45,8 @@ export default class App extends AppBase {
     // we add the relevant middlewares to our API
     super.addMiddlewares([
       cors({ 
-        origin: '*',
-        allowHeaders: 'Content-Type',
+        // origin: '*',
+        // allowHeaders: 'Content-Type',
         credentials: true
       }), // add cors headers to the requests
       helmet(), // adds various security headers to our API's responses

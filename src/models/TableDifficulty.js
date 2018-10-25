@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 
-const tableName = 'difficulty';
+const tableName = 'Difficulty';
 
 const Table = global.sequelize.define(tableName,
   {
@@ -30,6 +30,19 @@ const Table = global.sequelize.define(tableName,
         allowNull: false,
         default: false,
     },
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.fn('NOW'),
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.fn('NOW'),
+    },
+    deletedAt: {
+      type: Sequelize.DATE,
+    },      
   },
 );
 

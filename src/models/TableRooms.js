@@ -1,11 +1,12 @@
 import Sequelize from 'sequelize';
 
-const tableName = 'rooms';
+const tableName = 'Rooms';
 
 const Table = global.sequelize.define(tableName,
   {
     id: {
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
       unique: true,
       type: Sequelize.INTEGER,

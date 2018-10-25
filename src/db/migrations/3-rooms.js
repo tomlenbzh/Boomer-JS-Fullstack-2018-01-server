@@ -2,37 +2,28 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-   await queryInterface.createTable('users', {
+    await queryInterface.createTable('rooms', {
       id: {
         allowNull: false,
         autoIncrement: true,
-        unique: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      pseudo: {
-        type: Sequelize.STRING,
-        allowNull: false,
         unique: true,
-        trim: true,
+        type: Sequelize.INTEGER,
       },
-      password: {
+      start_time: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        trim: true,
+        defaultValue: Sequelize.fn('NOW'),
+      },
+      background: {
         type: Sequelize.STRING,
         allowNull: false,
-      },
-      defeat: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
         trim: true,
       },
-      score: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
-        trim: true,
-      },
-      rank:{
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
+      hot_potatoe: {
+        type: Sequelize.STRING,
+        allowNull: false,
         trim: true,
       },
       createdAt: {
@@ -47,11 +38,25 @@ module.exports = {
       },
       deletedAt: {
         type: Sequelize.DATE,
-      },      
+      },
+    }).then(() => {
+      return queryInterface.addColumn(
+        'rooms', // name of Target model
+        'level', // name of the key we're adding
+        {
+          type: Sequelize.INTEGER,
+          references: {
+            model: 'difficulty', // name of Source model
+            key: 'id',
+          },
+          onUpdate: 'CASCADE',
+          onDelete: 'SET NULL',
+        }
+      );
     });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('users');
+    return queryInterface.dropTable('rooms');
   }
 };
