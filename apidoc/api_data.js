@@ -10,7 +10,7 @@ define({ "api": [
       }
     ],
     "version": "0.0.0",
-    "filename": "C:/Users/noob_/Desktop/JsFullStack/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/auths/autologin.js",
+    "filename": "C:/Users/scott/Desktop/code/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/auths/autologin.js",
     "groupTitle": "Auths",
     "name": "GetAuthsAutologin"
   },
@@ -25,7 +25,7 @@ define({ "api": [
       }
     ],
     "version": "0.0.0",
-    "filename": "C:/Users/noob_/Desktop/JsFullStack/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/auths/logout.js",
+    "filename": "C:/Users/scott/Desktop/code/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/auths/logout.js",
     "groupTitle": "Auths",
     "name": "GetAuthsLogout"
   },
@@ -40,7 +40,7 @@ define({ "api": [
       }
     ],
     "version": "0.0.0",
-    "filename": "C:/Users/noob_/Desktop/JsFullStack/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/auths/login.js",
+    "filename": "C:/Users/scott/Desktop/code/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/auths/login.js",
     "groupTitle": "Auths",
     "name": "PostAuthsLogin"
   },
@@ -55,7 +55,7 @@ define({ "api": [
       }
     ],
     "version": "0.0.0",
-    "filename": "C:/Users/noob_/Desktop/JsFullStack/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/auths/signup.js",
+    "filename": "C:/Users/scott/Desktop/code/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/auths/signup.js",
     "groupTitle": "Auths",
     "name": "PostAuthsSignup"
   },
@@ -70,7 +70,7 @@ define({ "api": [
       }
     ],
     "version": "0.0.0",
-    "filename": "C:/Users/noob_/Desktop/JsFullStack/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/example/-id.js",
+    "filename": "C:/Users/scott/Desktop/code/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/example/-id.js",
     "groupTitle": "Example",
     "name": "GetExampleId"
   },
@@ -105,7 +105,7 @@ define({ "api": [
       }
     },
     "version": "0.0.0",
-    "filename": "C:/Users/noob_/Desktop/JsFullStack/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/example.js",
+    "filename": "C:/Users/scott/Desktop/code/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/example.js",
     "groupTitle": "Example",
     "name": "PostExample"
   },
@@ -120,7 +120,7 @@ define({ "api": [
       }
     ],
     "version": "0.0.0",
-    "filename": "C:/Users/noob_/Desktop/JsFullStack/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/Index.js",
+    "filename": "C:/Users/scott/Desktop/code/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/Index.js",
     "groupTitle": "Index",
     "name": "Get"
   },
@@ -135,7 +135,7 @@ define({ "api": [
       }
     ],
     "version": "0.0.0",
-    "filename": "C:/Users/noob_/Desktop/JsFullStack/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/Rooms.js",
+    "filename": "C:/Users/scott/Desktop/code/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/Rooms.js",
     "groupTitle": "Rooms",
     "name": "Get"
   }

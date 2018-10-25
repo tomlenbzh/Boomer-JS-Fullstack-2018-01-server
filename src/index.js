@@ -1,12 +1,29 @@
 import App from './App';
 import db from './models';
+import http from 'http'
+import socket from 'socket.io'
 
 // await db.migrations();
 
 // console.log(db);
 
 const app = new App();
+
+const server = http.createServer(app.koaApp.callback())
+const io = socket(server)
+
+io.on('join_room', function (socket) {
+    console.log('a user connected')
+})
+
+io.on('wez', function (socket) {
+    console.log('click')
+})
+
+
 app.start();
+
+server.listen(8000);
 
 
 // import cluster from 'cluster';

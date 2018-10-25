@@ -21,7 +21,10 @@
     "bcryptjs": "^2.4.0",
     "config": "^1.24.0",
     "handlebars": "^4.0.6",
+    "http": "0.0.0",
     "koa-smart": "^2.0.2",
+    "koa-socket-2": "^1.0.17",
+    "koa-websocket": "^5.0.1",
     "mysql2": "^1.6.1",
     "pg": "^6.4.2",
     "pg-hstore": "^2.3.2",
@@ -30,6 +33,7 @@
     "sequelize": "^4.38.1",
     "sequelize-cli": "^3.0.0",
     "sequelize-transforms": "github:allmas-tn/sequelize-transforms",
+    "socket.io": "^2.1.1",
     "sqlite3": "^4.0.2",
     "uuid": "^3.0.1"
   },
