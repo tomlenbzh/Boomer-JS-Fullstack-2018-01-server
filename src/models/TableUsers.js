@@ -2,7 +2,7 @@ import Sequelize from 'sequelize';
 
 import { crypto, validator } from '../base/utils';
 
-const tableName = 'Users';
+const tableName = 'users';
 
 const Table = global.sequelize.define(tableName,
   {

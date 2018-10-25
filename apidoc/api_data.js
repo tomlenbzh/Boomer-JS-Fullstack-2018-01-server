@@ -123,5 +123,20 @@ define({ "api": [
     "filename": "C:/Users/noob_/Desktop/JsFullStack/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/Index.js",
     "groupTitle": "Index",
     "name": "Get"
+  },
+  {
+    "type": "get",
+    "url": "/",
+    "title": "",
+    "group": "Rooms",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "version": "0.0.0",
+    "filename": "C:/Users/noob_/Desktop/JsFullStack/Boomer-JS-Fullstack-2018-01-Server/node_modules/koa-smart/dist/ApiDocTmp/Rooms.js",
+    "groupTitle": "Rooms",
+    "name": "Get"
   }
 ] });

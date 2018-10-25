@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 
-const tableName = 'Rooms';
+const tableName = 'rooms';
 
 const Table = global.sequelize.define(tableName,
   {
@@ -35,7 +35,7 @@ const Table = global.sequelize.define(tableName,
 );
 
 Table.associate = (models) => {
-  Table.belongsTo(models.difficulty, { foreignKey: 'level' });
+  Table.belongsTo(models.difficulty, {  targetKey: 'id', foreignKey: 'level'});
 };
 
 Table.getRoomById = async (id) => {
