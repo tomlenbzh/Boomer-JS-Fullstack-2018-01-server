@@ -1,4 +1,6 @@
 {
-  "Forbidden access": "Accès interdit",
-  "Not found": "Introuvable"
+	"Forbidden access": "Accès interdit",
+	"Not found": "Introuvable",
+	"Incorrect pseudo or password": "Incorrect pseudo or password",
+	"You are connected": "You are connected"
 }

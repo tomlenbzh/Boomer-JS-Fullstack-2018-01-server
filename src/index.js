@@ -16,13 +16,33 @@ const io = new IO();
 
 io.attach(app.koaApp);
 
-io.on('join_room', function (socket) {
+io.on('connection', function (socket) {
     console.log('a user connected');
-})
+    socket.socket.on('join_room', function(roomId) {
 
-io.on('wez', function (socket) {
-    io.socket.emit("wez", {})
-})
+        //Store RoomId
+
+        socket.socket.join(roomId)
+        socket.roomId = roomId;
+    })
+
+    socket.socket.on('leave_room', function(roomId) {
+        socket.socket.leave(roomId)
+        socket.roomId = "none";
+    })
+
+    socket.socket.on('wez', function () {
+
+        //increase the click count for the player and the room,
+        //if click destroys room, send destroy message to all sockets
+
+        socket.socket.to(socket.roomId).emit("wez", {})
+    })
+
+    socket.socket.on('disconnect', function(){
+        console.log('user disconnected');
+    });
+});
 
 
 app.start();
