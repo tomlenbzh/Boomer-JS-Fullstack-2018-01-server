@@ -1,1 +1,6 @@
-node_modules
+node_modules/
+
+apidoc/api_data.js
+apidoc/api_data.json
+
+config/

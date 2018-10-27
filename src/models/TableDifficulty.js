@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 
-const tableName = 'difficulty';
+const tableName = 'difficulties';
 
 const Table = global.sequelize.define(tableName,
   {

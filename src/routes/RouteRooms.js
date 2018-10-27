@@ -1,18 +1,15 @@
 import Route from './Route';
 
-@Route.Route({
-  routeBase: '',
-})
 export default class RouteRooms extends Route {
   constructor(params) {
-    super({ ...params });
+    super({ ...params, model: 'rooms' });
   }
 
-  @Route.Get({ path: '/' })
-  index(ctx) {
-    this.sendOk(ctx, {
-      name: packageJson.name,
-      version: packageJson.version,
-    });
+  @Route.Get({
+    path: '',
+  })
+  async rooms(ctx) {
+    const rooms = await this.model.getRooms(this.models);
+    this.sendOk(ctx, rooms, null);
   }
 }

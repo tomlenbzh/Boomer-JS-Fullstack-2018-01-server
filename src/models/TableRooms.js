@@ -35,12 +35,19 @@ const Table = global.sequelize.define(tableName,
 );
 
 Table.associate = (models) => {
-  Table.belongsTo(models.difficulty, {  targetKey: 'id', foreignKey: 'level'});
+  Table.belongsTo(models.difficulties, { targetKey: 'id', foreignKey: 'level' });
+};
+
+Table.getRooms = async (models) => {
+  return Table.findAll({
+    include: [{ model: models.difficulties, attributes: ['id', 'multiplier', 'loss', 'click_nbr'] }],
+    attributes: ['id', 'start_time', 'background', 'hot_potatoe']
+  });
 };
 
 Table.getRoomById = async (id) => {
   return Table.findById(id, {
-    attributes: ['id', 'start_time', 'background', 'hot_potatoe', 'difficulty'],
+    attributes: ['id', 'start_time', 'background', 'hot_potatoe'],
   });
 };
 

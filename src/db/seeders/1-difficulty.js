@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface) => {
-    await queryInterface.bulkInsert('difficulty', [
+    await queryInterface.bulkInsert('difficulties', [
       {
         multiplier: 1,
         loss: 1,
