@@ -20,6 +20,7 @@ io.on('connection', function (socket) {
     console.log('a user connected');
     socket.socket.on('join_room', function(roomId) {
 
+        console.log('joinRoom =', roomId);
         //Store RoomId
 
         socket.socket.join(roomId)
@@ -27,6 +28,8 @@ io.on('connection', function (socket) {
     })
 
     socket.socket.on('leave_room', function(roomId) {
+ 
+        console.log('LeaveRoom');
         socket.socket.leave(roomId)
         socket.roomId = "none";
     })
@@ -36,6 +39,7 @@ io.on('connection', function (socket) {
         //increase the click count for the player and the room,
         //if click destroys room, send destroy message to all sockets
 
+        console.log('Wez');
         socket.socket.to(socket.roomId).emit("wez", {})
     })
 

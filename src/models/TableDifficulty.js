@@ -10,6 +10,16 @@ const Table = global.sequelize.define(tableName,
       unique: true,
       type: Sequelize.INTEGER,
     },
+    title: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      trim: true,
+    },
+    description: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      trim: true,
+    }, 
     multiplier: {
       type: Sequelize.INTEGER,
       allowNull: false,
@@ -51,7 +61,7 @@ Table.associate = (models) => {
 
 Table.getDifficultyById = async (id) => {
   return Table.findById(id, {
-    attributes: ['id', 'multiplier', 'loss', 'click_nbr'],
+    attributes: ['id', 'title', 'description', 'multiplier', 'loss', 'click_nbr'],
   });
 };
   

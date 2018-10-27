@@ -10,6 +10,16 @@ module.exports = {
         unique: true,
         type: Sequelize.INTEGER,
       },
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        trim: true,
+      },
+      description: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        trim: true,
+      },      
       multiplier: {
         type: Sequelize.INTEGER,
         allowNull: false,

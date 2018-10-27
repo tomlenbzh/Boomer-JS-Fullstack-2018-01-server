@@ -20,7 +20,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
         trim: true,
-      },
+      },      
       hot_potatoe: {
         type: Sequelize.STRING,
         allowNull: false,

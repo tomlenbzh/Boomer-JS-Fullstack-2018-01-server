@@ -2,5 +2,5 @@ node_modules/
 
 apidoc/api_data.js
 apidoc/api_data.json
-
-config/
+apidoc/api_project.js
+apidoc/api_project.json
