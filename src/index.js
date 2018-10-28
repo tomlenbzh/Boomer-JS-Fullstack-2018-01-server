@@ -10,40 +10,50 @@ const app = new App();
 //var server = require('http').createServer(app.koaApp.callback())
 //var io = require('socket.io')(server)
 
-const IO = require( 'koa-socket' );
+const IO = require('koa-socket');
 
 const io = new IO();
 
 io.attach(app.koaApp);
 
-io.on('connection', function (socket) {
-    console.log('a user connected');
-    socket.socket.on('join_room', function(roomId) {
+// function emitPlayers (room, players) {
+//     console.log(room, players);
+//     io.of(room).emit("players", {
+//         players: players
+//     })
+// }
+
+io.on('connection', (ctx) => {
+
+    ctx.socket.on('join_room', (roomId) => {
 
         console.log('joinRoom =', roomId);
+        // console.log('socket =', socket.socket);
         //Store RoomId
+        ctx.socket.join(roomId.roomId)
+        ctx.roomId = roomId.roomId;
 
-        socket.socket.join(roomId)
-        socket.roomId = roomId;
+        // console.log(ctx.socket.adapter.rooms[roomId.roomId].length);
+        // ctx.socket.in(ctx.roomId).emit("players", {
+        //     players: ctx.socket.adapter.rooms[roomId.roomId].length
+        // })
+        // emitPlayers(ctx.roomId, ctx.socket.adapter.rooms[roomId.roomId].length)
     })
 
-    socket.socket.on('leave_room', function(roomId) {
- 
-        console.log('LeaveRoom');
-        socket.socket.leave(roomId)
-        socket.roomId = "none";
+    ctx.socket.on('leave_room', (roomId) => {
+        console.log('leaveRoom =', roomId);
+        ctx.socket.leave(roomId.roomId)
+        ctx.roomId = "none";
     })
 
-    socket.socket.on('wez', function () {
-
+    ctx.socket.on('wez', () => {
         //increase the click count for the player and the room,
         //if click destroys room, send destroy message to all sockets
-
-        console.log('Wez');
-        socket.socket.to(socket.roomId).emit("wez", {})
+        console.log("wez")
+        ctx.socket.to(ctx.roomId).emit("wez", {})
     })
 
-    socket.socket.on('disconnect', function(){
+    ctx.socket.on('disconnect', () => {
         console.log('user disconnected');
     });
 });
