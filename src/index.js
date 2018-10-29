@@ -41,9 +41,9 @@ io.on('connection', (ctx) => {
         // ctx.socket.broadcast(ctx.socket.id).emit("players", {
         //     players: ctx.socket.adapter.rooms[roomId.roomId].length
         // })
-        io.broadcast.to(ctx.socket.id).emit("players", {
-            players: ctx.socket.adapter.rooms[roomId.roomId].length
-        })
+        // io.broadcast.to(ctx.socket.id).emit("players", {
+        //     players: ctx.socket.adapter.rooms[roomId.roomId].length
+        // })
 
 
         // emitPlayers(ctx.roomId, ctx.socket.adapter.rooms[roomId.roomId].length)
