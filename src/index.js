@@ -34,14 +34,22 @@ io.on('connection', (ctx) => {
         ctx.roomId = roomId.roomId;
 
         // console.log(ctx.socket.adapter.rooms[roomId.roomId].length);
-        // ctx.socket.in(ctx.roomId).emit("players", {
+        console.log(ctx.socket.id)
+        ctx.socket.to(ctx.roomId).emit("players", {
+            players: ctx.socket.adapter.rooms[roomId.roomId].length
+        })
+        // ctx.socket.broadcast(ctx.socket.id).emit("players", {
         //     players: ctx.socket.adapter.rooms[roomId.roomId].length
         // })
+        io.broadcast.to(ctx.socket.id).emit("players", {
+            players: ctx.socket.adapter.rooms[roomId.roomId].length
+        })
+
+
         // emitPlayers(ctx.roomId, ctx.socket.adapter.rooms[roomId.roomId].length)
     })
 
     ctx.socket.on('leave_room', (roomId) => {
-        console.log('leaveRoom =', roomId);
         ctx.socket.leave(roomId.roomId)
         ctx.roomId = "none";
     })
@@ -49,7 +57,6 @@ io.on('connection', (ctx) => {
     ctx.socket.on('wez', () => {
         //increase the click count for the player and the room,
         //if click destroys room, send destroy message to all sockets
-        console.log("wez")
         ctx.socket.to(ctx.roomId).emit("wez", {})
     })
 
