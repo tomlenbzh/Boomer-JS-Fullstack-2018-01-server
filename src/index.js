@@ -27,26 +27,12 @@ io.on('connection', (ctx) => {
 
     ctx.socket.on('join_room', (roomId) => {
 
-        console.log('joinRoom =', roomId);
-        // console.log('socket =', socket.socket);
-        //Store RoomId
         ctx.socket.join(roomId.roomId)
         ctx.roomId = roomId.roomId;
 
-        // console.log(ctx.socket.adapter.rooms[roomId.roomId].length);
-        console.log(ctx.socket.id)
-        ctx.socket.to(ctx.roomId).emit("players", {
+        io.socket.to(ctx.roomId).emit("players", {
             players: ctx.socket.adapter.rooms[roomId.roomId].length
         })
-        // ctx.socket.broadcast(ctx.socket.id).emit("players", {
-        //     players: ctx.socket.adapter.rooms[roomId.roomId].length
-        // })
-        // io.broadcast.to(ctx.socket.id).emit("players", {
-        //     players: ctx.socket.adapter.rooms[roomId.roomId].length
-        // })
-
-
-        // emitPlayers(ctx.roomId, ctx.socket.adapter.rooms[roomId.roomId].length)
     })
 
     ctx.socket.on('leave_room', (roomId) => {
