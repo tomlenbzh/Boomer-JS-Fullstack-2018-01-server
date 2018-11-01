@@ -24,8 +24,8 @@ io.on('connection', (ctx) => {
   })
 
   ctx.socket.on('leaveRoom', (params) => {
+    io.socket.to(params.roomId).emit("players", ctx.socket.adapter.rooms[params.roomId].length - 1);
     ctx.socket.leave(params.roomId)
-    io.socket.to(params.roomId).emit("players", ctx.socket.adapter.rooms[params.roomId].length);
     ctx.roomId = "none";
   })
 
