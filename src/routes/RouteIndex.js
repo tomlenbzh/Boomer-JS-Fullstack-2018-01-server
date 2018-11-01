@@ -13,7 +13,7 @@ export default class RouteIndex extends Route {
     path: 'user/:pseudo',  
   })
   async user(ctx) {
-    const user = await this.model.findOne({ where: { pseudo: ctx.params.pseudo } });
+    const user = await this.model.findOne({ where: { pseudo: ctx.params.pseudo }, attributes: ['id', 'pseudo', 'defeat', 'score', 'rank'] });
     this.sendOk(ctx, user);
   }
 }
