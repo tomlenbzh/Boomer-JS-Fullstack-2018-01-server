@@ -6,15 +6,14 @@ import packageJson from '../../package.json';
 })
 export default class RouteIndex extends Route {
   constructor(params) {
-    super({ ...params });
+    super({ ...params, model: 'users' });
   }
 
-  // http://localhost:3000/
-  @Route.Get({ path: '/' })
-  index(ctx) {
-    this.sendOk(ctx, {
-      name: packageJson.name,
-      version: packageJson.version,
-    });
+  @Route.Get({
+    path: 'user/:pseudo',  
+  })
+  async user(ctx) {
+    const user = await this.model.findOne({ where: { pseudo: ctx.params.pseudo } });
+    this.sendOk(ctx, user);
   }
 }

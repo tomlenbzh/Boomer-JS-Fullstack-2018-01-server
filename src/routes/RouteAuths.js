@@ -53,21 +53,4 @@ export default class RouteAuths extends Route {
     const userInBody = await this._addUserInBody(ctx);
     this.sendOk(ctx, userInBody, ctx.state.__('You are connected'));
   }
-
-  @Route.Get({
-  })
-  async logout(ctx) {
-    await ctx.logoutUser();
-    this.sendOk(ctx, null, ctx.state.__('Sign Out'));
-  }
-
-  @Route.Get({
-  })
-  async autologin(ctx) {
-    if (ctx.state.user) {
-      await this._addUserInBody(ctx);
-    } else {
-      this.throw(401);
-    }
-  }
 }
