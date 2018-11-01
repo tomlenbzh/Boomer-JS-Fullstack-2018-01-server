@@ -11,7 +11,7 @@ io.attach(app.koaApp);
 const models = db.initModels();
 
 io.on('connection', (ctx) => {
-  ctx.socket.on('join_room', (params) => {
+  ctx.socket.on('joinRoom', (params) => {
     ctx.socket.join(params.roomId)
     ctx.roomId = params.roomId;
     ctx.userId = params.userId;
@@ -22,14 +22,14 @@ io.on('connection', (ctx) => {
     })
   })
 
-  ctx.socket.on('leave_room', (params) => {
+  ctx.socket.on('leaveRoom', (params) => {
     ctx.socket.leave(params.roomId)
     ctx.roomId = "none";
   })
 
-  ctx.socket.on('wez', async () => {
+  ctx.socket.on('playerClick', async () => {
     if (await models.rooms.increaseCount({ models: models, id: ctx.roomId }) === 'destroy') {
-        io.socket.to(ctx.roomId).emit("destroy", { })            
+      io.socket.to(ctx.roomId).emit("destroy", {})
     }
   })
 
