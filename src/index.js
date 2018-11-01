@@ -29,11 +29,8 @@ io.on('connection', (ctx) => {
 
   ctx.socket.on('wez', async () => {
     if (await models.rooms.increaseCount({ models: models, id: ctx.roomId }) === 'destroy') {
-        console.log("emit destroy")
         io.socket.to(ctx.roomId).emit("destroy", { })            
-    } else {
-        console.log("emit alive")
-    };
+    }
   })
 
   ctx.socket.on('disconnect', () => {
