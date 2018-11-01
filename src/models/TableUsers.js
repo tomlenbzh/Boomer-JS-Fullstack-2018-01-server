@@ -32,7 +32,7 @@ const Table = global.sequelize.define(tableName,
       defaultValue: 0,
       trim: true,
     },
-    rank:{
+    rank: {
       type: Sequelize.INTEGER,
       defaultValue: 0,
       trim: true,
@@ -46,7 +46,7 @@ const Table = global.sequelize.define(tableName,
       beforeUpdate: async (instance, options) => {
         return Table.beforeCreateUpdate(instance, options, false);
       },
-    },    
+    },
   },
 );
 
@@ -73,6 +73,31 @@ Table.associate = (models) => {
 Table.getUserById = async (id) => {
   return Table.findById(id, {
     attributes: ['id', 'pseudo', 'password', 'defeat', 'score', 'rank'],
+  });
+};
+
+Table.gainScore = async ({ models, roomId, userId }) => {
+  return models.rooms.getRoomById(models, roomId).then(room => {
+    const multiplier = room.difficulty.multiplier;
+    return Table.getUserById(userId).then(user => {
+      return Table.updateOne({ score: user.score + (5 * multiplier) }, { where: { id: userId } }).then(user => {
+        return Table.getUserById(userId).then(user => {
+          console.log(user.score);
+          return user.score;
+        });
+      });
+    });
+  });
+};
+
+Table.defeat = async ({ userId }) => {
+  return Table.getUserById(userId).then(user => {
+    return Table.updateOne({ score: (user.score) / 2, defeat: user.defeat + 1 }, { where: { id: userId } }).then(user => {
+      return Table.getUserById(userId).then(user => {
+        console.log("Console defeat = ", user.score);
+        return user.score;
+      });
+    });
   });
 };
 

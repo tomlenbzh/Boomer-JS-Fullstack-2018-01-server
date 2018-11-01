@@ -19,7 +19,7 @@ io.on('connection', (ctx) => {
 
     io.socket.to(ctx.roomId).emit("players", {
       players: ctx.socket.adapter.rooms[params.roomId].length
-    })
+    });
   })
 
   ctx.socket.on('leaveRoom', (params) => {
@@ -29,13 +29,20 @@ io.on('connection', (ctx) => {
 
   ctx.socket.on('playerClick', async () => {
     if (await models.rooms.increaseCount({ models: models, id: ctx.roomId }) === 'destroy') {
-      io.socket.to(ctx.roomId).emit("destroy", {})
-    }
+      io.socket.to(ctx.roomId).emit("destroy", {});
+      await models.users.defeat({ userId: ctx.userId });
+    } else {
+      const score =  await models.users.gainScore({ models: models, roomId: ctx.roomId, userId: ctx.userId });
+      ctx.socket.emit("score", { score : score});      
+    };
   })
 
   ctx.socket.on('disconnect', () => {
     console.log('user disconnected');
   });
 });
+
+async function deafeat (ctx) {
+}
 
 app.start();

@@ -87,9 +87,11 @@ Table.checkDestroy = async ({ models, id }) => {
     if (room.count < room.difficulty.click_nbr) {
       return 'alive';
     } else {
-      Table.destroy({ where: { id } });
-      Table.create({ hot_potatoe: "potatoe.png", background: "back.png", level: (Math.floor(Math.random() * Math.floor(7) + 1)) })
-      return 'destroy';
+      return Table.destroy({ where: { id } }).then(room => {
+        return Table.create({ hot_potatoe: "potatoe.png", background: "back.png", level: (Math.floor(Math.random() * Math.floor(7) + 1)) }).then(room => {
+          return 'destroy';
+        });
+      });
     }
   });
 }
