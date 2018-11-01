@@ -26,6 +26,12 @@ module.exports = {
         allowNull: false,
         trim: true,
       },
+      count: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        trim: true,
+        defaultValue: 0,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

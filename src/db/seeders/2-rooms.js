@@ -2,20 +2,13 @@
 
 module.exports = {
   up: async (queryInterface) => {
-    var sequelize = queryInterface.sequelize; 
-    var Rooms = [];
-    await sequelize.query('SELECT id FROM difficulties', { type: sequelize.QueryTypes.SELECT})
-    .then((difficultyRow) => {
-      difficultyRow.forEach(difficulty =>{ 
-        Rooms.push({ 
-          hot_potatoe: "potatoe.png",
-          background: "back.png",
-          level: difficulty.id,
-        }) 
-      });
-      queryInterface.bulkInsert('Rooms', Rooms, {});
-    })
-},
+    await queryInterface.bulkInsert('Rooms', [
+      { hot_potatoe: "potatoe.png", background: "back.png", level: (Math.floor(Math.random() * Math.floor(8))) },
+      { hot_potatoe: "potatoe.png", background: "back.png", level: (Math.floor(Math.random() * Math.floor(8))) },
+      { hot_potatoe: "potatoe.png", background: "back.png", level: (Math.floor(Math.random() * Math.floor(8))) },
+      { hot_potatoe: "potatoe.png", background: "back.png", level: (Math.floor(Math.random() * Math.floor(8))) },
+    ], {});
+  },
 
 
   down: (queryInterface, Sequelize) => {

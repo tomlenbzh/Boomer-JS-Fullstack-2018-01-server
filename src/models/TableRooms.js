@@ -1,4 +1,6 @@
 import Sequelize from 'sequelize';
+import { randomBytes } from 'crypto';
+import { cpus } from 'os';
 
 const tableName = 'rooms';
 
@@ -15,6 +17,7 @@ const Table = global.sequelize.define(tableName,
       type: Sequelize.DATE,
       allowNull: false,
       trim: true,
+      defaultValue: Sequelize.fn('NOW'),
     },
     background: {
       type: Sequelize.STRING,
@@ -26,15 +29,29 @@ const Table = global.sequelize.define(tableName,
       allowNull: false,
       trim: true,
     },
-    description: {
-      type: Sequelize.STRING,
+    count: {
+      type: Sequelize.INTEGER,
       allowNull: false,
       trim: true,
+      defaultValue: 0,
     },
     level: {
       type: Sequelize.INTEGER,
       defaultValue: 0,
       trim: true,
+    },
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.fn('NOW'),
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.fn('NOW'),
+    },
+    deletedAt: {
+      type: Sequelize.DATE,
     },
   },
 );
@@ -50,11 +67,32 @@ Table.getRooms = async (models) => {
   });
 };
 
-Table.getRoomById = async (id) => {
+Table.getRoomById = async (models, id) => {
   return Table.findById(id, {
-    attributes: ['id', 'start_time', 'background', 'hot_potatoe'],
+    include: [{ model: models.difficulties, attributes: ['id', 'title', 'description', 'multiplier', 'loss', 'click_nbr'] }],
+    attributes: ['id', 'start_time', 'background', 'count', 'hot_potatoe']
   });
 };
+
+Table.increaseCount = async ({ models, id }) => {
+  return Table.getRoomById(models, id).then(room => {
+    return Table.updateOne({ count: room.count + 1 }, { where: { id } }).then(room => {
+      return Table.checkDestroy({ models, id });
+    });
+  });
+};
+
+Table.checkDestroy = async ({ models, id }) => {
+  return Table.getRoomById(models, id).then(room => {
+    if (room.count < room.difficulty.click_nbr) {
+      return 'alive';
+    } else {
+      Table.destroy({ where: { id } });
+      Table.create({ hot_potatoe: "potatoe.png", background: "back.png", level: (Math.floor(Math.random() * Math.floor(7) + 1)) })
+      return 'destroy';
+    }
+  });
+}
 
 Table.changeBackground = async ({ id, background }) => {
   return Table.updateOne({ background }, { where: { id } });
