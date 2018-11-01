@@ -12,14 +12,15 @@ const models = db.initModels();
 
 io.on('connection', (ctx) => {
   ctx.socket.on('joinRoom', (params) => {
-    ctx.socket.join(params.roomId)
+    console.log("joinRoom = ", params);
+    if (ctx.roomId != params.roomId) {
+      ctx.socket.join(params.roomId)
+    }
     ctx.roomId = params.roomId;
     ctx.userId = params.userId;
     ctx.userPseudo = params.userPseudo;
 
-    io.socket.to(ctx.roomId).emit("players", {
-      players: ctx.socket.adapter.rooms[params.roomId].length
-    });
+    io.socket.to(ctx.roomId).emit("players", ctx.socket.adapter.rooms[params.roomId].length);
   })
 
   ctx.socket.on('leaveRoom', (params) => {
@@ -30,11 +31,11 @@ io.on('connection', (ctx) => {
   ctx.socket.on('playerClick', async () => {
     if (await models.rooms.increaseCount({ models: models, id: ctx.roomId }) === 'destroy') {
       const score = await models.users.defeat({ userId: ctx.userId });
-      ctx.socket.emit("score", score);      
+      ctx.socket.emit("score", score);
       io.socket.to(ctx.roomId).emit("destroy", {});
     } else {
-      const score =  await models.users.gainScore({ models: models, roomId: ctx.roomId, userId: ctx.userId });
-      ctx.socket.emit("score",  score);      
+      const score = await models.users.gainScore({ models: models, roomId: ctx.roomId, userId: ctx.userId });
+      ctx.socket.emit("score", score);
     };
   })
 
@@ -43,7 +44,7 @@ io.on('connection', (ctx) => {
   });
 });
 
-async function deafeat (ctx) {
+async function deafeat(ctx) {
 }
 
 app.start();
