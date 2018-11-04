@@ -88,7 +88,7 @@ Table.checkDestroy = async ({ models, id }) => {
       return 'alive';
     } else {
       return Table.destroy({ where: { id } }).then(room => {
-        return Table.create({ hot_potatoe: "potatoe.png", background: "back.png", level: (Math.floor(Math.random() * Math.floor(7) + 1)) }).then(room => {
+        return Table.create({ hot_potatoe: "potatoe.png", background: "back.png", level: (Math.floor(Math.random() * Math.floor(7)) + 1) }).then(room => {
           return 'destroy';
         });
       });
