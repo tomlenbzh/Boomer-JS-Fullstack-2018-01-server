@@ -7,10 +7,13 @@ const IO = require('koa-socket');
 
 const io = new IO();
 
-io.attach(app.koaApp);
+//io.set('origins', 'https://alexandremartins.net')
+
+io.attach(app.koaApp, { 'origins' : '*:*', 'transport' : ['websocket'] });
 const models = db.initModels();
 
 io.on('connection', (ctx) => {
+//  console.log('user connected');
   ctx.socket.on('joinRoom', (params) => {
     console.log("joinRoom = ", params);
     if (ctx.roomId != params.roomId) {
@@ -41,7 +44,7 @@ io.on('connection', (ctx) => {
   })
 
   ctx.socket.on('disconnect', () => {
-    console.log('user disconnected');
+  //  console.log('user disconnected');
   });
 });
 

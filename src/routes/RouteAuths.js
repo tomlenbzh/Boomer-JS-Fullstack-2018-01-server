@@ -1,6 +1,9 @@
 import Route from './Route';
 import utils, { crypto } from '../base/utils';
 
+@Route.Route({
+  routeBase: 'auths',
+})
 export default class RouteAuths extends Route {
   constructor(params) {
     super({ ...params, model: 'users' });
