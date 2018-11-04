@@ -25,6 +25,9 @@ export default class RouteIndex extends Route {
     const op = Sequelize.Op;
     const top = await this.model.findAll({limit: 5, order: Sequelize.col('score'), where: { score: { [op.gt]: 0 }}, attributes: ['id', 'pseudo', 'score'] });
 
+    for (let index = 0; index < top.length; index++) {
+      top[index].dataValues.rank = index + 1;      
+    }
     console.log(top);
     this.sendOk(ctx, top);
   }
