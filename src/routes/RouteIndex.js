@@ -17,13 +17,15 @@ export default class RouteIndex extends Route {
     this.sendOk(ctx, user);
   }
   
-  //@Route.Get({
-  //  path: 'top',  
-  //})
-  //async top(ctx) {
-  //  var Sequelize = require('sequelize');
-  //  const op = Sequelize.Op;
-  //  const top = await this.model.findAll({ where: { rank: { [op.lt]: 6 }}, attributes: ['id', 'pseudo', 'score'] });
-  //  this.sendOk(ctx, top);
-  //}
+  @Route.Get({
+    path: 'top',  
+  })
+  async top(ctx) {
+    var Sequelize = require('sequelize');
+    const op = Sequelize.Op;
+    const top = await this.model.findAll({limit: 5, order: Sequelize.col('score'), where: { score: { [op.gt]: 0 }}, attributes: ['id', 'pseudo', 'score'] });
+
+    console.log(top);
+    this.sendOk(ctx, top);
+  }
 }
