@@ -13,9 +13,7 @@ io.attach(app.koaApp, { 'origins' : '*:*', 'transport' : ['websocket'] });
 const models = db.initModels();
 
 io.on('connection', (ctx) => {
-//  console.log('user connected');
   ctx.socket.on('joinRoom', (params) => {
-    console.log("joinRoom = ", params);
     if (ctx.roomId != params.roomId) {
       ctx.socket.join(params.roomId)
     }
@@ -44,11 +42,8 @@ io.on('connection', (ctx) => {
   })
 
   ctx.socket.on('disconnect', () => {
-  //  console.log('user disconnected');
+
   });
 });
-
-async function deafeat(ctx) {
-}
 
 app.start();
