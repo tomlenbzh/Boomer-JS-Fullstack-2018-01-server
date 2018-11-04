@@ -36,6 +36,11 @@ module.exports = {
                   allowNull: false,
                   trim: true
                 },
+                background: {
+                  type: Sequelize.STRING,
+                  allowNull: false,
+                  trim: true,
+                },
                 multiplier: {
                   type: Sequelize.INTEGER,
                   allowNull: false,

@@ -35,6 +35,11 @@ module.exports = {
         allowNull: false,
         trim: true,
       },
+      background: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        trim: true,
+      },
       hard: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
