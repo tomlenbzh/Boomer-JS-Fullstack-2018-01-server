@@ -18,7 +18,7 @@ module.exports = {
         click_nbr: 20,
         hard: false,
         title: "Medium",
-        background: "http://www.wallpapermaiden.com/wallpaper/15792/download/1280x1024/halloween-graveyard-pumpkins-vampire-abandoned.jpg",
+        background: "https://www.wallpaperup.com/uploads/wallpapers/2015/11/05/829280/fb5029f42388487a229175ef9f9bb97a.jpg",
         description: "This is Room n°2, for a medium experience."
       },
       {
