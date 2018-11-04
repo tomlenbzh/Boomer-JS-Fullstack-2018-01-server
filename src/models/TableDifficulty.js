@@ -66,7 +66,7 @@ Table.associate = (models) => {
 
 Table.getDifficultyById = async (id) => {
   return Table.findById(id, {
-    attributes: ['id', 'title', 'description', 'multiplier', 'loss', 'click_nbr'],
+    attributes: ['id', 'title', 'description', 'background', 'multiplier', 'loss', 'click_nbr'],
   });
 };
   
