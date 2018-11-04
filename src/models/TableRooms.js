@@ -62,7 +62,7 @@ Table.associate = (models) => {
 
 Table.getRooms = async (models) => {
   return Table.findAll({
-    include: [{ model: models.difficulties, attributes: ['id', 'title', 'description', 'multiplier', 'loss', 'click_nbr'] }],
+    include: [{ model: models.difficulties, attributes: ['id', 'title', 'description', 'background', 'multiplier', 'loss', 'click_nbr'] }],
     attributes: ['id', 'start_time', 'background', 'hot_potatoe']
   });
 };
