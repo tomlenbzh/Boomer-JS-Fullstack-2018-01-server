@@ -1,17 +1,19 @@
+'use strict';
+
 var packageJson = require('../package.json');
 
-const port = process.env.PORT || 3001;
+var port = process.env.PORT || 3001;
 
 module.exports = {
   appName: 'My App',
   name: packageJson.name,
   version: packageJson.version,
   loginTokenVersion: '1',
-  port,
+  port: port,
   api: undefined,
   front: undefined,
   jsonwebtoken: {
-    privateKey: process.env.JWT_KEY, // MY-PRIVATE-KEY-USE-FOR-JWT-TO-CREATE-TOKEN-CONTAIN-USER-INFORMATIONS
+    privateKey: process.env.JWT_KEY // MY-PRIVATE-KEY-USE-FOR-JWT-TO-CREATE-TOKEN-CONTAIN-USER-INFORMATIONS
   },
   database: {
     username: process.env.DATABASE_USERNAME,
@@ -21,10 +23,9 @@ module.exports = {
     dialect: process.env.DATABASE_DIALECT,
     logging: false, // Outputting SQL to the console on execution of query
     dialectOptions: {
-      ssl: true,
-    },
+      ssl: true
+    }
   },
   // all elem in env will be add to process.env object
-  env: {
-  },
+  env: {}
 };
