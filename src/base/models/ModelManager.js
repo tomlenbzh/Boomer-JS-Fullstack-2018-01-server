@@ -10,6 +10,7 @@ import ModelsMigrations from './ModelsMigrations';
 
 export default class ModelManager {
   constructor() {
+    console.log(config);
     this.configBDD = config.database;
     this.sequelize = new Sequelize(config.database.database, config.database.username, config.database.password, {    
       host: config.database.host,
