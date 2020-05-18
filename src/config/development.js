@@ -2,7 +2,7 @@ module.exports = {
   isDev: true,
   database: {
     username: "root",
-    password: "Xp80QiZM47",
+    password: "root",
     database: "JsFullStack_dev",
     host: "127.0.0.1",
     dialect: "mysql",
