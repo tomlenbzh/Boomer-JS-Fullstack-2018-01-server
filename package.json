@@ -36,7 +36,7 @@
     "sequelize": "^3.0.0",
     "sequelize-cli": "^3.0.0",
     "sequelize-transforms": "github:allmas-tn/sequelize-transforms",
-    "socket.io": "^2.1.1",
+    "socket.io": "^2.4.0",
     "sqlite3": "^4.0.2",
     "uuid": "^3.0.1"
   },
